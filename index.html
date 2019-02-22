@@ -9,6 +9,15 @@
       height: 100px;
       background: skyblue;
       cursor: pointer;
+      /* スタイルが変化した時の遷移時間 */
+      transition: 0.8s;
+    }
+    .circle {
+      background: pink;
+      /* 角を丸める */
+      border-radius: 50%;
+      /* 回転アニメーション */
+      transform: rotate(360deg);
     }
   </style>
 </head>
@@ -19,8 +28,11 @@
     // ブラウザが厳密なエラーチェックをするためのキーワード
     'use strict';
     // クリックで色を変更
+    // 文書全体.指定Idの要素を取得.追加で何か（クリック）起きたら処理.ピンクにする
     document.getElementById('target').addEventListener('click', function() {
-      document.getElementById('target').style.background = 'pink';
+      // document.getElementById('target').style.background = 'pink';
+      // document.getElementById('target').style.borderRadius = '50%';
+      document.getElementById('target').classList.add('circle');
     });
   </script>
 </body>
