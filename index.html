@@ -27,12 +27,15 @@
   <script>
     // ブラウザが厳密なエラーチェックをするためのキーワード
     'use strict';
+
+    // 定数taget宣言し、繰り返し処理を定義
+    const target = document.getElementById('target');
+
     // クリックで色を変更
     // 文書全体.指定Idの要素を取得.追加で何か（クリック）起きたら処理.ピンクにする
-    document.getElementById('target').addEventListener('click', function() {
-      // document.getElementById('target').style.background = 'pink';
-      // document.getElementById('target').style.borderRadius = '50%';
-      document.getElementById('target').classList.add('circle');
+    target.addEventListener('click', function() {
+      // targetにcircleクラスが付いていたら外す、付いていたらつける
+      target.classList.toggle('circle');
     });
   </script>
 </body>
