@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <title>JavaScript Practice</title>
   <style>
-    /* flexboxで横並び */
-    body {
+    body {              /* flexboxで横並び */
       display: flex;
       flex-wrap: wrap;
     }
@@ -14,39 +13,49 @@
       height: 100px;
       background: skyblue;
       cursor: pointer;
-      /* スタイルが変化した時の遷移時間 */
-      transition: 0.8s;
+      transition: 0.8s; /* スタイルが変化した時の遷移時間 */
       margin: 0 8px 8px 0;
-      /* テキスト数字を中央に配置 */
-      text-align: center;
+      text-align: center;  /* テキストを中央に配置 */
       line-height: 100px
     }
-    .circle {
+    .win {
       background: pink;
-      /* 角を丸める */
-      border-radius: 50%;
-      /* 回転アニメーション */
-      transform: rotate(360deg);
+      border-radius: 50%; /* 角を丸める */
+      transform: rotate(360deg);  /* 回転アニメーション */
+    }
+    .lose {
+      transform: scale(0.9);  /* ハズレは少し枠を小さく */
     }
   </style>
 </head>
 <body>
 
   <script>
-    // ブラウザが厳密なエラーチェックをするためのキーワード
-    'use strict';
-    // iを0から１つづ足して繰り返しdivを追加
-    for (let i = 0; i < 100; i++) {
-      // 空のdivを作成し、定数divという名前にする
-      const div = document.createElement('div');
+    'use strict'; // ブラウザが厳密なエラーチェックをするためのキーワード
+
+    const num = 5;
+    const winner = Math.floor(Math.random() * num); // 小数点以下切捨、0-4ランダム数値
+
+    for (let i = 0; i < num; i++) { // iを0から１つづ足して繰り返しdivを追加
+      const div = document.createElement('div');  // 空のdiv作成、定数の名前div
       div.classList.add('box');
-      // テキスト数字の表示
-      div.textContent = i;
+      if (i === winner) {
+        div.dataset.result = 'win'; //当たり
+      } else {
+        div.dataset.result = 'lose'; //ハズレ
+      }
       div.addEventListener('click', function() {
+        if (div.dataset.result === 'win') {
+          div.textContent = 'Win!';  //当たりはWin!と表示
+          div.classList.add('win');
+        } else {
+          div.textContent = 'Lose!';  //ハズレはLose!と表示
+          div.classList.add('lose');
+        }
         div.classList.toggle('circle')
       });
-      // ブラウザ表示するにはbodyの子要素の最後のものとして追加
-      document.body.appendChild(div);
+
+      document.body.appendChild(div); // ブラウザ表示はbodyの子要素最後として追加
     }
   </script>
 </body>
