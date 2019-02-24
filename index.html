@@ -28,31 +28,18 @@
   </style>
 </head>
 <body>
-  <div id="target1" class="box"></div>
-  <div id="target2" class="box"></div>
-  <div id="target3" class="box"></div>
 
   <script>
     // ブラウザが厳密なエラーチェックをするためのキーワード
     'use strict';
-
-    // 定数taget宣言し、繰り返し処理を定義
-    const target1 = document.getElementById('target1');
-    const target2 = document.getElementById('target2');
-    const target3 = document.getElementById('target3');
-
-    // クリックで色を変更
-    // 文書全体.指定Idの要素を取得.追加で何か（クリック）起きたら処理.ピンクにする
-    target1.addEventListener('click', function() {
-      // targetにcircleクラスが付いていたら外す、付いていたらつける
-      target1.classList.toggle('circle');
+    // 空のdivを作成し、定数divという名前にする
+    const div = document.createElement('div');
+    div.classList.add('box');
+    div.addEventListener('click', function() {
+      div.classList.toggle('circle')
     });
-    target2.addEventListener('click', function() {
-      target2.classList.toggle('circle');
-    });
-    target3.addEventListener('click', function() {
-      target3.classList.toggle('circle');
-    });
+    // ブラウザ表示するにはbodyの子要素の最後のものとして追加
+    document.body.appendChild(div);
   </script>
 </body>
 </html>
