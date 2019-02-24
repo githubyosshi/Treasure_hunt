@@ -4,15 +4,59 @@
   <meta charset="utf-8">
   <title>JavaScript Practice</title>
   <style>
+    body {              /* flexboxで横並び */
+      display: flex;
+      flex-wrap: wrap;
+    }
     .box {
       width: 100px;
       height: 100px;
       background: skyblue;
       cursor: pointer;
+      transition: 0.8s; /* スタイルが変化した時の遷移時間 */
+      margin: 0 8px 8px 0;
+      text-align: center;  /* テキストを中央に配置 */
+      line-height: 100px
+    }
+    .win {
+      background: pink;
+      border-radius: 50%; /* 角を丸める */
+      transform: rotate(360deg);  /* 回転アニメーション */
+    }
+    .lose {
+      transform: scale(0.9);  /* ハズレは少し枠を小さく */
     }
   </style>
 </head>
 <body>
-  <div class="box"></div>
+
+  <script>
+    'use strict'; // ブラウザが厳密なエラーチェックをするためのキーワード
+
+    const num = 5;
+    const winner = Math.floor(Math.random() * num); // 小数点以下切捨、0-4ランダム数値
+
+    for (let i = 0; i < num; i++) { // iを0から１つづ足して繰り返しdivを追加
+      const div = document.createElement('div');  // 空のdiv作成、定数の名前div
+      div.classList.add('box');
+      if (i === winner) {
+        div.dataset.result = 'win'; //当たり
+      } else {
+        div.dataset.result = 'lose'; //ハズレ
+      }
+      div.addEventListener('click', function() {
+        if (div.dataset.result === 'win') {
+          div.textContent = 'Win!';  //当たりはWin!と表示
+          div.classList.add('win');
+        } else {
+          div.textContent = 'Lose!';  //ハズレはLose!と表示
+          div.classList.add('lose');
+        }
+        div.classList.toggle('circle')
+      });
+
+      document.body.appendChild(div); // ブラウザ表示はbodyの子要素最後として追加
+    }
+  </script>
 </body>
 </html>
