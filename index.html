@@ -17,6 +17,9 @@
       /* スタイルが変化した時の遷移時間 */
       transition: 0.8s;
       margin: 0 8px 8px 0;
+      /* テキスト数字を中央に配置 */
+      text-align: center;
+      line-height: 100px
     }
     .circle {
       background: pink;
@@ -32,14 +35,19 @@
   <script>
     // ブラウザが厳密なエラーチェックをするためのキーワード
     'use strict';
-    // 空のdivを作成し、定数divという名前にする
-    const div = document.createElement('div');
-    div.classList.add('box');
-    div.addEventListener('click', function() {
-      div.classList.toggle('circle')
-    });
-    // ブラウザ表示するにはbodyの子要素の最後のものとして追加
-    document.body.appendChild(div);
+    // iを0から１つづ足して繰り返しdivを追加
+    for (let i = 0; i < 100; i++) {
+      // 空のdivを作成し、定数divという名前にする
+      const div = document.createElement('div');
+      div.classList.add('box');
+      // テキスト数字の表示
+      div.textContent = i;
+      div.addEventListener('click', function() {
+        div.classList.toggle('circle')
+      });
+      // ブラウザ表示するにはbodyの子要素の最後のものとして追加
+      document.body.appendChild(div);
+    }
   </script>
 </body>
 </html>
